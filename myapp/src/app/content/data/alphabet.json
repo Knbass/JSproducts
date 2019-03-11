@@ -1,0 +1,110 @@
+{
+    "32": {
+        "small": " ",
+        "capital": "　"
+    },
+    "65": {
+        "small": "a",
+        "capital": "A"
+    },
+    "66": {
+        "small": "b",
+        "capital": "B"
+    },
+    "67": {
+        "small": "c",
+        "capital": "C"
+    },
+    "68": {
+        "small": "d",
+        "capital": "D"
+    },
+    "69": {
+        "small": "e",
+        "capital": "E"
+    },
+    "70": {
+        "small": "f",
+        "capital": "F"
+    },
+    "71": {
+        "small": "g",
+        "capital": "G"
+    },
+    "72": {
+        "small": "h",
+        "capital": "H"
+    },
+    "73": {
+        "small": "i",
+        "capital": "I"
+    },
+    "74": {
+        "small": "j",
+        "capital": "J"
+    },
+    "75": {
+        "small": "k",
+        "capital": "K"
+    },
+    "76": {
+        "small": "l",
+        "capital": "L"
+    },
+    "77": {
+        "small": "m",
+        "capital": "M"
+    },
+    "78": {
+        "small": "n",
+        "capital": "N"
+    },
+    "79": {
+        "small": "o",
+        "capital": "O"
+    },
+    "80": {
+        "small": "p",
+        "capital": "P"
+    },
+    "81": {
+        "small": "q",
+        "capital": "Q"
+    },
+    "82": {
+        "small": "r",
+        "capital": "R"
+    },
+    "83": {
+        "small": "s",
+        "capital": "S"
+    },
+    "84": {
+        "small": "t",
+        "capital": "T"
+    },
+    "85": {
+        "small": "u",
+        "capital": "U"
+    },
+    "86": {
+        "small": "v",
+        "capital": "V"
+    },
+    "87": {
+        "small": "w",
+        "capital": "W"
+    },
+    "88": {
+        "small": "x",
+        "capital": "X"
+    },
+    "89": {
+        "small": "y",
+        "capital": "Y"
+    },
+    "90": {
+        "small": "z",
+        "capital": "Z"
+    }
+}

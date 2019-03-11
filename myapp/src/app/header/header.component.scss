@@ -1,0 +1,17 @@
+#header {
+	top: -5px;
+	width: 100%;
+	position: fixed;
+	background-color: #3f51b5;
+}  
+.hd-elem {
+	display: inline;
+	color: #FFF;
+	font-size: 30px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.hd-elem:hover {
+	display: inline;
+	background: #6f81e5;
+}
