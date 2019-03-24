@@ -108,3 +108,7 @@ function moveObject(elm, moveX, moveY, distance) {
 function elmCnt(elm) {
 	return elm.length;
 }
+//引数以下の乱数を返す（0以外）
+function getRandomInt(max) {
+  return parseInt(Math.floor(Math.random() * Math.floor(max))) + 1;
+}

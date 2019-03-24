@@ -70,8 +70,6 @@ $(function() {
     	//words = shuffle(words);
 
         //ランダムな位置に配置
-        var left = Math.random()*1000;
-        var top  = Math.random()*150;
         var ene_pos = getEnemyPos();
         var rnd = Math.floor(Math.random()*ene_pos.length);
 
@@ -85,12 +83,14 @@ $(function() {
         	var elm_cnt = elmCnt($("[id*='ene_box']"));
         	enemy[elm_cnt] = new Enemy(ene_pos[rnd].x, ene_pos[rnd].y, words[getQCnt()].word, words[getQCnt()].mean);
 
+
+
             var ene_box = $('<div id="ene_box'+ elm_cnt+'" style="position: absolute;">'
                       +        '<div id="q_box">'
                       +           '<div id="mean"></div>'
                       +           '<div id="ans"></div>'
                       +        '</div>'
-                      +        '<img id="enemy" src="img/enemy.png" width="130" height="130" />'
+                      +        '<img id="enemy" src="img/enemy'+getRandomInt(3)+'.png" width="130" height="130" />'
                       +        '<meter id="ene_hp" max=100 value=100 style="width: 130px; display: block;" />'
                       +     '</div>');
             ene_box.css({'left': enemy[elm_cnt].x + 'px','top': enemy[elm_cnt].y + 'px'});
