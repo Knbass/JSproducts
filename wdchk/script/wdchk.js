@@ -1,27 +1,3 @@
-var enemy_pos = [
-    {x: '650', y: '200', flg: -1},
-    {x: '350', y: '50',  flg: -1},
-    {x: '800', y: '0',   flg: -1},
-    {x: '0',   y: '100', flg: -1},
-    {x: '100', y: '250', flg: -1},
-    {x: '400', y: '150', flg: -1}
-];
-
-var changeArea = [
-    {x: '1200', y: '200', direction: 'upRight', name: 'grass2', land_x: '0',    land_y: '200', bg:'bg2.jpg'},
-    {x: '0'   , y: '200', direction: 'upLeft' , name: 'grass2', land_x: '1200', land_y: '0',   bg:'bg3.jpg'}
-];
-
-//wall area
-var wall = [];
-
-var stage_no = -1;
-var q_cnt = 0;
-var ans = '';
-var chCnt = 0;
-var slct_elm = -1;
-var slct_q = -1;
-
 function init(){
 
 	/*メソッドチェーン使わないとできないが*/
@@ -35,12 +11,17 @@ function init(){
     });
     initArea('bg.jpg', 500, 700);
 
+    if(localStorage.getItem('Level')){
+    	setLevel(localStorage.getItem('Level'));
+    }
+    setLevel(getLevel());
+    $('#level').text(level);
 }
 
 function initArea(bg,land_x,land_y){
 
 	//矢印・オブジェクトの撤収
-	$("[id*='direction']").remove();
+	//$("[id*='direction']").remove();
 
     //背景の設置
     $('#display').css({'background':'url("img/'+ bg +'")',
@@ -52,6 +33,7 @@ function initArea(bg,land_x,land_y){
     //プレイヤーの設置
     $('#player').css({'top':'150px','left':'350px'});
 
+	/*
     //矢印の設置
     for(var i = 0; i < changeArea.length; i++){
     	$('#field').append('<img id="direction'+ i +'" src="img/' + changeArea[i].direction +'.png" style="width: 50px; height: 50px; position: absolute;"/>')
@@ -70,87 +52,9 @@ function initArea(bg,land_x,land_y){
         if(distance < 150){
         	var directNo = parseInt($(this).attr('id').replace('direction', ''));
         	initArea(changeArea[directNo].bg, changeArea[directNo].land_x, changeArea[directNo].land_y);
-        }
+       }
     });
-}
-function setAns(a){
-    ans = a;
-}
-function getAns(){
-    return ans;
-}
-function setChCnt(cc){
-    chCnt = cc;
-}
-function getChCnt(){
-    return chCnt;
-}
-function setSlctElm(se){
-    slct_elm = se;
-}
-function getSlctElm(){
-    return slct_elm;
-}
-function setSlctQ(q){
-	slect_q = q;
-}
-function getSlctQ(){
-	return slect_q;
-}
-function setQCnt(cnt){
-    q_cnt = cnt;
-}
-function getQCnt(){
-    return q_cnt;
-}
-function getEnemyPos(){
-    return enemy_pos;
-}
-function changeEnemyPosFlg(n, flg){
-    enemy_pos[n].flg = flg;
-}
-function getChangeArea(){
-	return changeArea;
-}
-function shuffle(array) {
-  var n = array.length, t, i;
-
-  while (n) {
-    i = Math.floor(Math.random() * n--);
-    t = array[n];
-    array[n] = array[i];
-    array[i] = t;
-  }
-
-  return array;
-}
-
-function validator(){
-
-    if(posX > 400 && posY > 200 && posX < 1200 && posY < 1000){
-        return true;
-    }else{
-        // playerを壁に寄せる処理
-        return false;
-    }
-
-}
-
-//CSSの値を計算に扱う
-function getCssValue(elm, attr){
-	return parseInt(elm.css(attr).replace('px',''));
-}
-
-//キャラクター移動時の周囲のモーション
-function moveObject(elm, moveX, moveY, distance) {
-    $(elm).animate({
-        'left': getCssValue(elm,'left') + moveX + 'px',
-        'top': getCssValue(elm,'top') + moveY + 'px'
-    }, distance * 10);
-}
-//ある文字列を含む要素数を数える
-function elmCnt(elm) {
-	return elm.length;
+    */
 }
 
 $(function() {
@@ -161,7 +65,7 @@ $(function() {
         return word.charAt(chCnt);
     }
 
-    $('#mkelm').on('click', function() {
+    $('#mkene').on('click', function() {
 
     	//words = shuffle(words);
 
@@ -174,39 +78,33 @@ $(function() {
         //ポジションが空いていれば
         if(ene_pos[rnd].flg == -1){
 
-        	//ここに敵キャラと問題番号を紐づける処理が必要
-        	//var ;
-
-            var ene_box = $('<div id="ene_box'+elmCnt($("[id*='ene_box']"))+'" style="position: absolute;"></div>');
-            var q_box = $('<div id="q_box"></div>');
-            var mean  = $('<div id="mean"></div>');
-            var ans   = $('<div id="ans"></div>');
-            var enemy = $('<img id="enemy" src="img/enemy.png" width="130" height="130" />');
-            var hp    = $('<meter id="ene_hp" max=100 value=100 style="width: 130px; display: block;" />');
-            ene_box.css({'left': ene_pos[rnd].x + 'px','top': ene_pos[rnd].y + 'px'});
-
             //ポジションの確保
-            changeEnemyPosFlg(rnd,elmCnt($("[id*='ene_box']")));
+            changeEnemyPosFlg(rnd,elm_cnt);
 
-            mean.text(words[getQCnt()].mean);
+        	//ここに敵キャラと問題番号を紐づける処理が必要
+        	var elm_cnt = elmCnt($("[id*='ene_box']"));
+        	enemy[elm_cnt] = new Enemy(ene_pos[rnd].x, ene_pos[rnd].y, words[getQCnt()].word, words[getQCnt()].mean);
 
-            //組み立て
-            q_box.append(mean);
-            q_box.append(ans); 
-
-            ene_box.append(q_box);
-            ene_box.append(enemy);
-            ene_box.append(hp);
+            var ene_box = $('<div id="ene_box'+ elm_cnt+'" style="position: absolute;">'
+                      +        '<div id="q_box">'
+                      +           '<div id="mean"></div>'
+                      +           '<div id="ans"></div>'
+                      +        '</div>'
+                      +        '<img id="enemy" src="img/enemy.png" width="130" height="130" />'
+                      +        '<meter id="ene_hp" max=100 value=100 style="width: 130px; display: block;" />'
+                      +     '</div>');
+            ene_box.css({'left': enemy[elm_cnt].x + 'px','top': enemy[elm_cnt].y + 'px'});
 
             $('#field').append(ene_box);
+
+            $("#ene_box"+ elm_cnt +">#q_box>#mean").text(enemy[elm_cnt].mean);
 
             //敵
             $("[id*='ene_box']").on('click', function(e) {
 
             	var slct_elm = $(this).attr('id').replace('ene_box', '')
 
-            	//フィールドは動かさない
-            	e.stopPropagation(); //親要素の処理を無効
+            	e.stopPropagation(); //親要素の処理を無効(フィールドは動かさない)
 
                 var dist_x = getCssValue($(this),'left') + 1/2 * getCssValue($(this).children('#enemy'),'width') - 400;
                 var dist_y = getCssValue($(this),'top') + 1/2 * getCssValue($(this).children('#enemy'),'height') + getCssValue($(this).children('#q_box'),'height') - 200;
@@ -227,6 +125,14 @@ $(function() {
         setQCnt(getQCnt()+1);
         }
 
+    });
+
+    $('#save').on('click', function() {
+		localStorage.setItem('Level', getLevel()); 	
+    });
+
+    $('#delete_data').on('click', function() {
+		localStorage.removeItem("Level");
     });
 
     //プレイヤーの移動
@@ -282,17 +188,17 @@ $(function() {
         // 文字入力
         if(getChCnt() != -1 && getSlctElm() != -1) {
             var slctElm = getSlctElm();
-            var ch = rtnCh(words[slctElm].word, chCnt);
+            var ch = rtnCh(enemy[slctElm].word, chCnt);
 
             if (kyCdtoAlph[e.keyCode].small == ch
                 || kyCdtoAlph[e.keyCode].capital == ch) {
                 setAns(getAns() + ch);
                 $("#ene_box"+getSlctElm() + ">#q_box>#ans").text(ans);
                 setChCnt(getChCnt() + 1);
-                $("#q_box"+getSlctElm() + ">#hp").val(((words[slctElm].word.length - getChCnt())/words[slctElm].word.length)*100); 
+                $("#ene_box"+getSlctElm() + ">#ene_hp").val(((enemy[slctElm].word.length - getChCnt())/enemy[slctElm].word.length)*100); 
             }
 
-            if(getChCnt() >= words[slctElm].word.length) {
+            if(getChCnt() >= enemy[slctElm].word.length) {
 
                 setAns('');
                 setChCnt(0);
@@ -312,6 +218,12 @@ $(function() {
                     $("#ene_box" + getSlctElm()).remove();
                     setSlctElm(-1);
                 });
+
+                if($("#exp").val() >= 100){
+                	$("#exp").val(0);
+                	setLevel(parseInt(getLevel())+parseInt(1));
+                	$('#level').text(getLevel());
+                }
             }
         }
     });

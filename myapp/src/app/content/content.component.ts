@@ -1,4 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
+import {Observable} from 'rxjs';
+import {OmikujiService} from '../omikuji.service';
 
 export interface PeriodicElement {
   name: string;
@@ -36,12 +38,21 @@ export class ContentComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { 
+  omikujiResult = '';
+  datas: Observable<string[]>;
 
+  constructor(public omikuji: OmikujiService) {
   }
 
   ngOnInit() {
+  }
 
+  draw() {
+    this.omikujiResult = this.omikuji.draw();
+  }
+
+  getDatas() {
+    this.datas = this.omikuji.getDatas();
   }
 
 }

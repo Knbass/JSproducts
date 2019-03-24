@@ -4,9 +4,7 @@
 		<meta charset="UTF-8">
 		<link href="css/wdchk.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
-		<script src="script/jquery.js"></script>
-		<script src="script/data.js"></script>
-		<script src="script/manage.js"></script>
+		<script src="script/mypage.js"></script>
 		<!-- jQuery, jQueryUIの読み込み-->
 		<link href="css/jquery-ui.min.css" rel="stylesheet">
 		<link href="css/jquery-ui.structure.min.css" rel="stylesheet">
@@ -23,7 +21,17 @@
 			<div class="hd-elem">GAME</div>
 			<div class="hd-elem">SHOP</div>
 			<div class="hd-elem">MY PAGE</div>
-			<span style="float:right; padding:10px; color:white; font-size:18px; ">sibata さん</span>
+			<span id="login_name">sibata さん</span>
+		</div>
+
+		<div style="text-align: center;">
+			<div style="padding-top: 100px;"></div>
+			<img src="img/nekoR.png" style="width:200px; height:250px" />
+			<table style="text-align: center;">
+				<tr><td>プレイヤー名</td><td>sibata</td></tr>
+				<tr><td>LEVEL</td><td><div id="level"></div></td></tr>
+				<tr><td>COIN</td><td></td></tr>
+			</table>
 		</div>
 	</body>
 </html>

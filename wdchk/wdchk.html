@@ -6,7 +6,9 @@
 		<link href="css/style.css" rel="stylesheet">
 		<script src="script/jquery.js"></script>
 		<script src="script/data.js"></script>
-		<script src="script/wdchk.js"></script>
+		<script src="script/Enemy.js"></script>
+		<script src="script/global.js"></script>	
+		<script src="script/wdchk.js"></script>		
 		<!-- jQuery, jQueryUIの読み込み-->
 		<link href="css/jquery-ui.min.css" rel="stylesheet">
 		<link href="css/jquery-ui.structure.min.css" rel="stylesheet">
@@ -23,17 +25,19 @@
 			<div class="hd-elem">GAME</div>
 			<div class="hd-elem">SHOP</div>
 			<div class="hd-elem">MY PAGE</div>
-			<span style="float:right; padding:10px; color:white; font-size:18px; ">sibata さん</span>
+			<span id="login_name">sibata さん</span>
 		</div>
 
-		<div id="display" style="">
+		<div id="display">
 			<div id="field"></div>
-			<div id="controller">
-				<div id="mkelm">NEW</div>
-				<div id="confirm">CRIBBING</div>
-				<div id="confirm">C</div>
-				<div id="confirm">CRIBBING</div>	
-				<meter id="exp" max=100 value=0 style="width: 700px;" />
+			<div id="controller" style="padding-top:20px;">
+				<div id="mkene">MAKE ENEMY</div>
+				<div id="save">SAVE</div>
+				<div id="delete_data">DELETE DATA</div>
+				<meter id="exp" max=100 value=0 style="width: 600px;"></meter>
+				<div style="float:left; margin-left:30px;">EXP : </div><br>
+				<div style="float:left; margin-left:30px;">LV : </div>
+				<div id="level" style="float:left; margin-left:10px;"></div>
 			</div>
 		</div>
 	</body>

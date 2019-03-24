@@ -22,6 +22,10 @@
 
 <button mat-raised-button color="primary">登録する</button>
 
+<div>
+  <button (click)="getHeroes()">おみくじを引く</button>
+  <li *ngFor="let hero of heroes">
+</div>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 

@@ -13,7 +13,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio'; 
 import { MatTableModule } from '@angular/material/table';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { OmikujiService} from './omikuji.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HeroesComponent } from './heroes/heroes.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { FormsModule }   from '@angular/forms';
     HeaderComponent,
     ContentComponent,
     IndexComponent,
-    AboutComponent
+    AboutComponent,
+    HeroesComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +37,10 @@ import { FormsModule }   from '@angular/forms';
     MatInputModule,
     MatRadioModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [OmikujiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

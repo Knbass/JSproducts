@@ -12,10 +12,158 @@
 .hd-elem:hover {
 	display: inline;
 	background: #64d264;
+    cursor: pointer;
 }
 .min-elem {
 	margin-top:    15px;
 	margin-bottom: 15px;
 	margin-left:   30px;
 	margin-right:  30px;
+}
+#mkene{
+    display: inline-block;
+    width: 200px;
+    margin: 15px;
+    line-height: 35px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    background: #119fef;/*ボタン色*/
+    border-bottom: solid 2.5px #016DA9;
+    border-right: solid 2.5px #016DA9; 
+}
+#mkene:hover {
+    transform: translateY(1px);/*下に動く*/
+    -ms-transform: translateX(1px);
+    -webkit-transform: translateY(1px);
+    transform: translateX(1px); /*右に動く*/
+    cursor: pointer;
+    transition: 0.3s;
+    background: #41cfff;
+    border-bottom: solid 1px #016DA9;
+    border-right: solid 1px #016DA9;
+}
+#mkene:hover span{
+  -webkit-transform: rotateX(360deg);
+  -ms-transform: rotateX(360deg);
+  transform: rotateX(360deg);
+} 
+#save{
+    display: inline-block;
+    width: 200px;
+    margin: 15px;
+    line-height: 35px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    background: #32CD32;/*ボタン色*/
+    border-bottom: solid 2.5px #129D12;
+    border-right: solid 2.5px #129D12; 
+}
+#save:hover {
+    transform: translateY(1px);/*下に動く*/
+    -ms-transform: translateX(1px);
+    -webkit-transform: translateY(1px);
+    transform: translateX(1px); /*右に動く*/
+    cursor: pointer;
+    transition: 0.3s;
+    background: #52FD52;
+    border-bottom: solid 1px #129D12;
+    border-right: solid 1px #129D12;
+}
+#save:hover span{
+  -webkit-transform: rotateX(360deg);
+  -ms-transform: rotateX(360deg);
+  transform: rotateX(360deg);
+} 
+#delete_data{
+    display: inline-block;
+    width: 200px;
+    margin: 15px;
+    line-height: 35px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    background: #CD3232;/*ボタン色*/
+    border-bottom: solid 2.5px #9D1212;
+    border-right: solid 2.5px #9D1212; 
+}
+#delete_data:hover {
+    transform: translateY(1px);/*下に動く*/
+    -ms-transform: translateX(1px);
+    -webkit-transform: translateY(1px);
+    transform: translateX(1px); /*右に動く*/
+    cursor: pointer;
+    transition: 0.3s;
+    background: #FD5252;
+    border-bottom: solid 1px #9D1212;
+    border-right: solid 1px #9D1212;
+}
+#delete_data:hover span{
+  -webkit-transform: rotateX(360deg);
+  -ms-transform: rotateX(360deg);
+  transform: rotateX(360deg);
+} 
+#login_name{
+    float:right;
+    padding:10px;
+    color:white;
+    font-size:18px; 
+}
+#q_box {
+    background-color: rgba(250,250,250,0.6);
+    padding-top: 3px;
+    text-align: center;
+    width: 130px;
+    height: 70px;
+}
+#mean {
+    display: inline-block;
+    padding-top: 3px;
+    font-size: 18px;
+}
+#ans {
+    margin: 3px;
+    font-size: 18px;
+}
+#display{
+    top: 80px;
+    left:200px;
+    height: 400px;
+    width: 800px;
+    position: absolute;
+    z-index: 0;
+}
+#field{
+    height: 400px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+#player{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+#confirm {
+    display: inline-block;
+    width: 290px;
+    margin: 20px;
+    line-height: 45px;
+    background: #4169e1;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+}
+#controller {
+    background-color: rgba(150,150,150,0.6);
+    text-align:center;
+    width: 100%;
+    height: 200px;
+}
+#lockon {
+    width:100px;
+    height:100px;
+    position:absolute;
+    left: 10px;
 }
