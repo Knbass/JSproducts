@@ -1,10 +1,12 @@
 var enemy_pos = [
     {x: '650', y: '200', flg: -1},
     {x: '350', y: '50',  flg: -1},
-    {x: '800', y: '50',  flg: -1},
+    {x: '700', y: '50',  flg: -1},
     {x: '50',  y: '100', flg: -1},
     {x: '100', y: '250', flg: -1},
-    {x: '400', y: '150', flg: -1}
+    {x: '400', y: '150', flg: -1},
+    {x: '550', y: '150', flg: -1},
+    {x: '300', y: '250', flg: -1}
 ];
 
 var changeArea = [
@@ -23,6 +25,8 @@ var chCnt = 0;
 var slct_elm = -1;
 var slct_q = -1;
 var level = 1;
+var exp = 0;
+var hp = 100;
 
 function setAns(a){
     ans = a;
@@ -68,6 +72,18 @@ function setLevel(lv){
 }
 function getLevel(){
     return level;
+}
+function setExp(e){
+    exp = e;
+}
+function getExp(){
+    return exp;
+}
+function setHp(h){
+    hp = h;
+}
+function getHp(){
+    return hp;
 }
 function shuffle(array) {
   var n = array.length, t, i;

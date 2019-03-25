@@ -4,9 +4,11 @@ function init(){
 	getData("data/alphabet.json", setKyCd);
 	getData("data/words.json",setWords);
 
-    $('#field').append($('<img id="player" src="img/nekoR.png" />'));
+    $('#field').append($('<div id="player_box" style="position: absolute;">'
+    	               +     '<img id="player" src="img/playerR.png" />'
+    	               +     '<meter id="player_hp" max=100 value=100 style="width: 130px; display: block; top:110px; position: absolute;" />'
+    	               + '</div>'));
     $('#player').on('click', function(e){
-        console.log('hello');
     	e.stopPropagation();
     });
     initArea('bg.jpg', 500, 700);
@@ -14,7 +16,10 @@ function init(){
     if(localStorage.getItem('Level')){
     	setLevel(localStorage.getItem('Level'));
     }
-    setLevel(getLevel());
+    if(localStorage.getItem('Exp')){
+    	setExp(localStorage.getItem('Exp'));
+    }
+    $("#exp").val(getExp());
     $('#level').text(level);
 }
 
@@ -31,7 +36,7 @@ function initArea(bg,land_x,land_y){
     	               'background-repeat':'no-repeat'});
 
     //プレイヤーの設置
-    $('#player').css({'top':'150px','left':'350px'});
+    $('#player_box').css({'top':'150px','left':'350px'});
 
 	/*
     //矢印の設置
@@ -83,8 +88,6 @@ $(function() {
         	var elm_cnt = elmCnt($("[id*='ene_box']"));
         	enemy[elm_cnt] = new Enemy(ene_pos[rnd].x, ene_pos[rnd].y, words[getQCnt()].word, words[getQCnt()].mean);
 
-
-
             var ene_box = $('<div id="ene_box'+ elm_cnt+'" style="position: absolute;">'
                       +        '<div id="q_box">'
                       +           '<div id="mean"></div>'
@@ -128,11 +131,13 @@ $(function() {
     });
 
     $('#save').on('click', function() {
-		localStorage.setItem('Level', getLevel()); 	
+		localStorage.setItem('Level', getLevel()); 
+		localStorage.setItem('Exp', getExp()); 		
     });
 
     $('#delete_data').on('click', function() {
 		localStorage.removeItem("Level");
+		localStorage.removeItem("Exp"); 	
     });
 
     //プレイヤーの移動
@@ -142,11 +147,13 @@ $(function() {
     	$("#ene_box"+getSlctElm() + ">#lockon").remove();
     	setSlctElm(-1);
 
+    	console.log(e.offsetX);
+    	console.log($("#player_box").css('left').replace('px',''));
         //向き
-        if(e.offsetX < $("#player").css('left').replace('px','')){
-            $("#player").attr("src", "img/nekoL.png");
-        }else if(e.offsetX > getCssValue($("#player"),'left') + getCssValue($("#player"),'width')){
-            $("#player").attr("src", "img/nekoR.png");
+        if(e.offsetX < $("#player_box").css('left').replace('px','')){
+            $("#player").attr("src", "img/playerL.png");
+        }else if(e.offsetX > getCssValue($("#player_box"),'left') + getCssValue($("#player_box"),'width')){
+            $("#player").attr("src", "img/playerR.png");
         }
 
         //中心座標
@@ -196,13 +203,26 @@ $(function() {
                 $("#ene_box"+getSlctElm() + ">#q_box>#ans").text(ans);
                 setChCnt(getChCnt() + 1);
                 $("#ene_box"+getSlctElm() + ">#ene_hp").val(((enemy[slctElm].word.length - getChCnt())/enemy[slctElm].word.length)*100); 
+            } else {
+            	setHp(getHp()-10);
+            	$("#player_hp").val(getHp());
+
+            	if(getHp() <= 0) {
+	                $("#player_box").animate({
+	                    opacity: "0"
+	                }, 1000,
+	                function(){
+	                    $("#player_box").remove();
+	                });
+            	}
             }
 
             if(getChCnt() >= enemy[slctElm].word.length) {
 
                 setAns('');
                 setChCnt(0);
-                $("#exp").val($("#exp").val() + 30);
+                setExp(parseInt(getExp()) + parseInt(30));
+                $("#exp").val(getExp());
                 //敵のポジションを解放
                 var ene_pos = getEnemyPos();
                 for(var i = 0; i < ene_pos.length; i++){
@@ -220,7 +240,8 @@ $(function() {
                 });
 
                 if($("#exp").val() >= 100){
-                	$("#exp").val(0);
+                	setExp(getExp() - 100);
+                	$("#exp").val(getExp());
                 	setLevel(parseInt(getLevel())+parseInt(1));
                 	$('#level').text(getLevel());
                 }
