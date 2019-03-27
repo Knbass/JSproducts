@@ -2,36 +2,37 @@
 <html lang="ja" ng-app="myApp">
 	<head>
 		<meta charset="UTF-8">
-		<link href="css/wdchk.css" rel="stylesheet">
+		<link href="css/skyblue.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
+		<script src="script/jquery.js"></script>
 		<script src="script/mypage.js"></script>
-		<!-- jQuery, jQueryUIの読み込み-->
-		<link href="css/jquery-ui.min.css" rel="stylesheet">
-		<link href="css/jquery-ui.structure.min.css" rel="stylesheet">
-		<link href="css/jquery-ui.theme.min.css" rel="stylesheet">
 	    <!-- BootstrapのCSS読み込み -->
 	    <link href="css/bootstrap.min.css" rel="stylesheet">
-	    <link href="css/bootstrap.css" rel="stylesheet">
 		<title>WORD</title>
 	</head>
 	<body>
 		<div id="header" class="label-success" style="z-index: 1;">
 			<br>
 			<div class="hd-elem">HOME</div>
-			<div class="hd-elem">GAME</div>
+			<a href="wdchk.html" class="hd-elem">GAME</a>
 			<div class="hd-elem">SHOP</div>
-			<div class="hd-elem">MY PAGE</div>
-			<span id="login_name">sibata さん</span>
+			<a href="mypage.html" class="hd-elem">MY PAGE</a>
+			<span class="login_name" style="float:right;">sibata さん</span>
 		</div>
 
 		<div style="text-align: center;">
 			<div style="padding-top: 100px;"></div>
-			<img src="img/nekoR.png" style="width:200px; height:250px" />
-			<table style="text-align: center;">
-				<tr><td>プレイヤー名</td><td>sibata</td></tr>
-				<tr><td>LEVEL</td><td><div id="level"></div></td></tr>
-				<tr><td>COIN</td><td></td></tr>
-			</table>
+			<img src="img/playerR.png" style="width:200px; height:250px" />
+				<table class="table">
+				    <thead>
+				        <tr>
+				            <th>No</th>
+				            <th>Word</th>
+				            <th>Mean</th>
+				        </tr>
+				    </thead>
+
+				</table>
 		</div>
 	</body>
 </html>

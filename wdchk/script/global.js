@@ -27,6 +27,7 @@ var slct_q = -1;
 var level = 1;
 var exp = 0;
 var hp = 100;
+var missList = [];
 
 function setAns(a){
     ans = a;
@@ -97,6 +98,24 @@ function shuffle(array) {
 
   return array;
 }
+function addMissList(element) {
+    var dup_flag = true;
+    for(var i = 0; i < missList.length; i++) {
+        var miss = missList[i];
+        if(element[i]==miss[i]){
+            console.log("dup"+dup_flag);
+            dup_flag = false;
+        }
+    }
+    if(dup_flag){
+        console.log("push"+dup_flag);
+        missList.push(element);
+    }
+
+}
+function getMissList() {
+    return missList;
+}
 
 function validator(){
 
@@ -122,6 +141,7 @@ function moveObject(elm, moveX, moveY, distance) {
 }
 //ある文字列を含む要素数を数える
 function elmCnt(elm) {
+
 	return elm.length;
 }
 //引数以下の乱数を返す（0以外）

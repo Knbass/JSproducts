@@ -1,6 +1,12 @@
+body{
+    background-color: rgb(37, 36, 40);
+    width:100%;
+    height:100%;
+}
 #header {
 	width: 100%;
 	position: fixed;
+    background-color: rgb(92, 184, 92);
 }
 .hd-elem {
 	display: inline;
@@ -8,8 +14,11 @@
 	font-size: 30px;
 	padding-left: 20px;
 	padding-right: 20px;
+    background-color: rgb(92, 184, 92);
 }
 .hd-elem:hover {
+    text-decoration:none;/*下線を消す*/
+    color:#FFF;/*非リンクの文字色と同じにする*/
 	display: inline;
 	background: #64d264;
     cursor: pointer;
@@ -104,8 +113,7 @@
   -ms-transform: rotateX(360deg);
   transform: rotateX(360deg);
 } 
-#login_name{
-    float:right;
+.login_name{
     padding:10px;
     color:white;
     font-size:18px; 
@@ -166,4 +174,10 @@
     height:100px;
     position:absolute;
     left: 10px;
+}
+#login_bg {
+    width: 100%;
+    padding: 300px;
+    padding-bottom: 1000px;
+    background-color: rgb(37, 36, 40);
 }

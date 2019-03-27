@@ -86,7 +86,7 @@ $(function() {
 
         	//ここに敵キャラと問題番号を紐づける処理が必要
         	var elm_cnt = elmCnt($("[id*='ene_box']"));
-        	enemy[elm_cnt] = new Enemy(ene_pos[rnd].x, ene_pos[rnd].y, words[getQCnt()].word, words[getQCnt()].mean);
+        	enemy[elm_cnt] = new Enemy(ene_pos[rnd].x, ene_pos[rnd].y, words[getQCnt()].no, words[getQCnt()].word, words[getQCnt()].mean);
 
             var ene_box = $('<div id="ene_box'+ elm_cnt+'" style="position: absolute;">'
                       +        '<div id="q_box">'
@@ -122,7 +122,6 @@ $(function() {
 	                setSlctElm(slct_elm);
 	                $("#ene_box"+getSlctElm() + ">#enemy").after($('<img id="lockon" src="img/lockon.png" />'));
 				}
-
                 setChCnt(0);
             });
         setQCnt(getQCnt()+1);
@@ -132,12 +131,30 @@ $(function() {
 
     $('#save').on('click', function() {
 		localStorage.setItem('Level', getLevel()); 
-		localStorage.setItem('Exp', getExp()); 		
+		localStorage.setItem('Exp', getExp());
+
+		var array = [];
+		var missList = getMissList();
+		for(var i = 0; i < missList.length; i++){
+			var miss = missList[i];
+
+			var obj = {
+			  'no': miss[0],
+			  'word': miss[1],
+			  'mean': miss[2]
+			};
+			array.push(obj);
+		}
+
+		var setjson = JSON.stringify(array);
+		localStorage.setItem('WORDS', setjson);
+
     });
 
     $('#delete_data').on('click', function() {
 		localStorage.removeItem("Level");
-		localStorage.removeItem("Exp"); 	
+		localStorage.removeItem("Exp"); 
+		localStorage.removeItem("WORDS");	
     });
 
     //プレイヤーの移動
@@ -189,7 +206,6 @@ $(function() {
         	moveObject($('#direction' + i), moveX, moveY, distance);
         }
     });
-
     
     $(document).keydown(function(e) {
         // 文字入力
@@ -215,6 +231,8 @@ $(function() {
 	                    $("#player_box").remove();
 	                });
             	}
+
+            	addMissList([enemy[slctElm].no, enemy[slctElm].word, enemy[slctElm].mean]);
             }
 
             if(getChCnt() >= enemy[slctElm].word.length) {

@@ -2,43 +2,27 @@
 <html lang="ja" ng-app="myApp">
 	<head>
 		<meta charset="UTF-8">
-		<link href="css/wdchk.css" rel="stylesheet">
+	    <link href="css/skyblue.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
-		<script src="script/jquery.js"></script>
-		<script src="script/data.js"></script>
-		<script src="script/Enemy.js"></script>
-		<script src="script/global.js"></script>	
-		<script src="script/wdchk.js"></script>		
-		<!-- jQuery, jQueryUIの読み込み-->
-		<link href="css/jquery-ui.min.css" rel="stylesheet">
-		<link href="css/jquery-ui.structure.min.css" rel="stylesheet">
-		<link href="css/jquery-ui.theme.min.css" rel="stylesheet">
-	    <!-- BootstrapのCSS読み込み -->
-	    <link href="css/bootstrap.min.css" rel="stylesheet">
-	    <link href="css/bootstrap.css" rel="stylesheet">
 		<title>WORD</title>
 	</head>
 	<body>
-		<div id="header" class="label-success" style="z-index: 1;">
-			<br>
-			<div class="hd-elem">HOME</div>
-			<div class="hd-elem">GAME</div>
-			<div class="hd-elem">SHOP</div>
-			<div class="hd-elem">MY PAGE</div>
-			<span id="login_name">sibata さん</span>
-		</div>
 
-		<div id="display">
-			<div id="field"></div>
-			<div id="controller" style="padding-top:20px;">
-				<div id="mkene">MAKE ENEMY</div>
-				<div id="save">SAVE</div>
-				<div id="delete_data">DELETE DATA</div>
-				<meter id="exp" max=100 value=0 style="width: 600px;"></meter>
-				<div style="float:left; margin-left:30px;">EXP : </div><br>
-				<div style="float:left; margin-left:30px;">LV : </div>
-				<div id="level" style="float:left; margin-left:10px;"></div>
+		<div id="login_bg">
+		<form class="form">
+			<div class="success">
+			    <label>LOGIN NAME</label>
+			    <input class="form-control" type="text" size="50">
 			</div>
+			<br>
+			<div class="success">
+			    <label>PASSWORD</label>
+			    <input type="password" class="form-control" type="text" size="50">
+			</div>
+			<br>
+			<a href="wdchk.html" class="btn btn-success">LOGIN</a>
+		</form>
+
 		</div>
 	</body>
 </html>
