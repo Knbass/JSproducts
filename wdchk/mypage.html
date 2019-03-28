@@ -5,9 +5,11 @@
 		<link href="css/skyblue.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<script src="script/jquery.js"></script>
+		<script src="script/player.js"></script>
+		<script src="script/global.js"></script>
 		<script src="script/mypage.js"></script>
 	    <!-- BootstrapのCSS読み込み -->
-	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link href="css/bootstrap.css" rel="stylesheet">
 		<title>WORD</title>
 	</head>
 	<body>
@@ -17,22 +19,61 @@
 			<a href="wdchk.html" class="hd-elem">GAME</a>
 			<div class="hd-elem">SHOP</div>
 			<a href="mypage.html" class="hd-elem">MY PAGE</a>
-			<span class="login_name" style="float:right;">sibata さん</span>
+			<span class="white_char" style="float:right;">sibata さん</span>
 		</div>
 
 		<div style="text-align: center;">
 			<div style="padding-top: 100px;"></div>
-			<img src="img/playerR.png" style="width:200px; height:250px" />
-				<table class="table">
-				    <thead>
+			<img src="img/player.jpg" style="width:200px; height:250px" />
+
+			<div align="center" style="margin-top:50px;">
+			<h2 style="color:#fff;">Charactor Status</h2>
+				<table class="table" style="margin-top:30px; width:300px;">
+			        <tr>
+			            <td style="background-color:#fff;">LV</td>
+			            <td style="background-color:#fff;">
+			            	<span id="level" class="black_char" style="float:left"></span>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="background-color:#fff;">HP</td>
+			            <td style="background-color:#fff;">
+			            	<span id="hp" class="black_char" style="float:left"></span>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="background-color:#fff;">POW</td>
+			            <td style="background-color:#fff;">
+			            	<span id="pow" class="black_char" style="float:left"></span>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="background-color:#fff;">DEF</td>
+			            <td style="background-color:#fff;">
+			            	<span id="def" class="black_char" style="float:left"></span>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td style="background-color:#fff;">SPD</td>
+			            <td style="background-color:#fff;">
+			            	<span id="spd" class="black_char" style="float:left"></span>
+			            </td>
+			        </tr>
+				</table>
+			</div>
+
+			<div align="center" style="margin-top:100px;">
+			<h2 style="color:#fff; margin-top:50px;">Training</h2>
+				<table id="review" class="table" style="margin-top:30px; width:500px;">
+				    <thead style="background-color:#84f284;">
 				        <tr>
-				            <th>No</th>
 				            <th>Word</th>
 				            <th>Mean</th>
 				        </tr>
 				    </thead>
 
 				</table>
+			</div>
 		</div>
 	</body>
 </html>

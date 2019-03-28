@@ -24,9 +24,7 @@ var ans = '';
 var chCnt = 0;
 var slct_elm = -1;
 var slct_q = -1;
-var level = 1;
-var exp = 0;
-var hp = 100;
+var player = new Player(1,0,100,100,1,1,1);
 var missList = [];
 
 function setAns(a){
@@ -68,26 +66,11 @@ function changeEnemyPosFlg(n, flg){
 function getChangeArea(){
 	return changeArea;
 }
-function setLevel(lv){
-    level = lv;
-}
-function getLevel(){
-    return level;
-}
-function setExp(e){
-    exp = e;
-}
-function getExp(){
-    return exp;
-}
-function setHp(h){
-    hp = h;
-}
-function getHp(){
-    return hp;
-}
+
 function shuffle(array) {
-  var n = array.length, t, i;
+  var n = array.length;
+  var t;
+  var i;
 
   while (n) {
     i = Math.floor(Math.random() * n--);

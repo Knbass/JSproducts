@@ -6,21 +6,34 @@ function init(){
 
     $('#field').append($('<div id="player_box" style="position: absolute;">'
     	               +     '<img id="player" src="img/playerR.png" />'
-    	               +     '<meter id="player_hp" max=100 value=100 style="width: 130px; display: block; top:110px; position: absolute;" />'
+    	               +     '<meter id="player_hp" max='+player.getMaxHp()+' value='+player.getMaxHp()+' style="width: 130px; display: block; top:110px; position: absolute;" />'
     	               + '</div>'));
-    $('#player').on('click', function(e){
+    $('#player_box').on('click', function(e){
     	e.stopPropagation();
     });
     initArea('bg.jpg', 500, 700);
 
     if(localStorage.getItem('Level')){
-    	setLevel(localStorage.getItem('Level'));
+    	player.setLevel(localStorage.getItem('Level'));
     }
     if(localStorage.getItem('Exp')){
-    	setExp(localStorage.getItem('Exp'));
+    	player.setExp(localStorage.getItem('Exp'));
     }
-    $("#exp").val(getExp());
-    $('#level').text(level);
+    if(localStorage.getItem('MAX_HP')){
+    	player.setMaxHp(localStorage.getItem('MAX_HP'));
+    }
+    if(localStorage.getItem('POW')){
+    	player.setPow(localStorage.getItem('POW'));
+    }
+    if(localStorage.getItem('DEF')){
+    	player.setDef(localStorage.getItem('DEF'));
+    }
+    if(localStorage.getItem('SPD')){
+    	player.setSpd(localStorage.getItem('SPD'));
+    }
+    $("#exp").val(player.getExp());
+    $('#level').text(player.getLevel());
+
 }
 
 function initArea(bg,land_x,land_y){
@@ -66,13 +79,13 @@ $(function() {
 
     init();
 
+    //words = shuffle(words);
+
     function rtnCh(word, chCnt){
         return word.charAt(chCnt);
     }
 
     $('#mkene').on('click', function() {
-
-    	//words = shuffle(words);
 
         //ランダムな位置に配置
         var ene_pos = getEnemyPos();
@@ -130,8 +143,12 @@ $(function() {
     });
 
     $('#save').on('click', function() {
-		localStorage.setItem('Level', getLevel()); 
-		localStorage.setItem('Exp', getExp());
+		localStorage.setItem('Level', player.getLevel()); 
+		localStorage.setItem('Exp', player.getExp());
+		localStorage.setItem('MAX_HP', player.getMaxHp()); 
+		localStorage.setItem('POW', player.getPow());
+		localStorage.setItem('DEF', player.getDef()); 
+		localStorage.setItem('SPD', player.getSpd());
 
 		var array = [];
 		var missList = getMissList();
@@ -154,6 +171,10 @@ $(function() {
     $('#delete_data').on('click', function() {
 		localStorage.removeItem("Level");
 		localStorage.removeItem("Exp"); 
+		localStorage.removeItem("MAX_HP"); 
+		localStorage.removeItem("POW");
+		localStorage.removeItem("DEF"); 
+		localStorage.removeItem("SPD");
 		localStorage.removeItem("WORDS");	
     });
 
@@ -220,10 +241,10 @@ $(function() {
                 setChCnt(getChCnt() + 1);
                 $("#ene_box"+getSlctElm() + ">#ene_hp").val(((enemy[slctElm].word.length - getChCnt())/enemy[slctElm].word.length)*100); 
             } else {
-            	setHp(getHp()-10);
-            	$("#player_hp").val(getHp());
+            	player.setHp(player.getHp()-10);
+            	$("#player_hp").val(player.getHp());
 
-            	if(getHp() <= 0) {
+            	if(player.getHp() <= 0) {
 	                $("#player_box").animate({
 	                    opacity: "0"
 	                }, 1000,
@@ -239,8 +260,8 @@ $(function() {
 
                 setAns('');
                 setChCnt(0);
-                setExp(parseInt(getExp()) + parseInt(30));
-                $("#exp").val(getExp());
+                player.setExp(parseInt(player.getExp()) + parseInt(30));
+                $("#exp").val(player.getExp());
                 //敵のポジションを解放
                 var ene_pos = getEnemyPos();
                 for(var i = 0; i < ene_pos.length; i++){
@@ -257,11 +278,32 @@ $(function() {
                     setSlctElm(-1);
                 });
 
+                //レベルアップ
                 if($("#exp").val() >= 100){
-                	setExp(getExp() - 100);
-                	$("#exp").val(getExp());
-                	setLevel(parseInt(getLevel())+parseInt(1));
-                	$('#level').text(getLevel());
+                	player.setExp(player.getExp() - 100);
+                	$("#exp").val(player.getExp());
+                	player.setLevel(parseInt(player.getLevel())+parseInt(1));
+                	$('#level').text(player.getLevel());
+
+                	//ステータスアップ
+                	player.setMaxHp(parseInt(player.getMaxHp()) + 1);
+                	player.setPow(parseInt(player.getPow()) + 1);
+                	player.setDef(parseInt(player.getDef()) + 1);
+                	player.setSpd(parseInt(player.getSpd()) + 1);
+
+                	//HP全部回復
+                	player.setHp(player.getMaxHp());
+                	$("#player_hp").val(player.getHp());
+
+                	//アニメーション
+                	$('#player_box').append('<img id="levelup" src="img/levelup.png" width="150" height="50">');
+	                $("#levelup").animate({
+	                	'padding-bottom': '30px',
+	                    opacity: "0"
+	                }, 3000,
+	                function(){
+	                    $("#levelup").remove();
+	                });
                 }
             }
         }

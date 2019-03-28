@@ -277,7 +277,6 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-color: #fff;
 }
 input,
 button,
@@ -1401,14 +1400,12 @@ pre code {
   }
 }
 table {
-  max-width: 100%;
   background-color: transparent;
 }
 th {
   text-align: left;
 }
 .table {
-  width: 100%;
   margin-bottom: 20px;
 }
 .table > thead > tr > th,

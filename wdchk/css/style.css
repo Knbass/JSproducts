@@ -113,9 +113,14 @@ body{
   -ms-transform: rotateX(360deg);
   transform: rotateX(360deg);
 } 
-.login_name{
+.white_char {
     padding:10px;
     color:white;
+    font-size:18px; 
+}
+.black_char {
+    padding:10px;
+    color:black;
     font-size:18px; 
 }
 #q_box {
